@@ -741,10 +741,11 @@ func (s *Scanner) isTokenIdentifier(lit string, offset int) int {
 	buf.Grow(len(lit))
 	data := buf.Bytes()[:len(lit)]
 	for i := 0; i < len(lit); i++ {
-		if lit[i] >= 'a' && lit[i] <= 'z' {
-			data[i] = lit[i] + 'A' - 'a'
+		li := lit[i]
+		if li >= 'a' && li <= 'z' {
+			data[i] = li + 'A' - 'a'
 		} else {
-			data[i] = lit[i]
+			data[i] = li
 		}
 	}
 

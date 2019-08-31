@@ -13,7 +13,6 @@ parser.go: parser.y
 	make parser
 
 parser: bin/goyacc
-	bin/goyacc -o /dev/null parser.y
 	bin/goyacc -o parser.go parser.y 2>&1 | egrep "(shift|reduce)/reduce" | awk '{print} END {if (NR > 0) {print "Find conflict in parser.y. Please check y.output for more information."; exit 1;}}'
 	rm -f y.output
 
